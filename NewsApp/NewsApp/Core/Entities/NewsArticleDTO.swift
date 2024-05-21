@@ -5,13 +5,14 @@
 //  Created by João Paulo Pereira dos Santos on 20/05/24.
 //
 
-import Foundation
+import UIKit
 
 struct NewsArticleDTO {
     var author: String?
     var title: String
     var description: String
-    var urlToImage: URL?
-    var publishedAt: Date
+    var urlToImage: String?
+    var image: UIImage?
+    var publishedAt: String
     var content: String
 }

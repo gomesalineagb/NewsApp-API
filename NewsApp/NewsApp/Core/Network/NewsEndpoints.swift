@@ -9,4 +9,5 @@ import Foundation
 
 struct NewsEndpoints {
     static let everything = "https://newsapi.org/v2/everything"
+    static let topHeadlines = "https://newsapi.org/v2/top-headlines"
 }

@@ -13,11 +13,13 @@ protocol NewsListInteractorInputProtocol: AnyObject {
     func fetchAllNews()
     func search(with text: String)
     func didSelected(article: NewsArticleDTO) //FIXME: verificar necessidade
+    func downloadImage(for url: String?, index: Int)
 }
 
 protocol NewsListInteractorOutputProtocol: AnyObject {
     func fetchDataSuccess(data: [NewsArticleDTO])
     func fetchDataFailure(with message: String?)
+    func updateImage(for index: Int, image: UIImage?)
 }
 
 protocol NewsListPresenterInputProtocol: AnyObject {
@@ -25,14 +27,16 @@ protocol NewsListPresenterInputProtocol: AnyObject {
     var view: NewsListPresenterOutputProtocol? { get set }
     var router: NewsListRouterProtocol? { get set }
     func viewDidLoad()
-    func didSelected(article: NewsArticleDTO)
+    func didSelected(index: Int)
+    func downloadImage(for url: String?, index: Int)
 }
 
 protocol NewsListPresenterOutputProtocol: AnyObject {
     var presenter: NewsListPresenterInputProtocol? { get set }
-    func setDataSource(news: [NewsArticleDTO])
+    func setDataSource(articles: [NewsArticleDTO])
     func setLoading(isLoading: Bool)
     func showError(with message: String?)
+    func updateImage(for index: Int, image: UIImage?)
 }
 
 protocol NewsListRouterProtocol: AnyObject {

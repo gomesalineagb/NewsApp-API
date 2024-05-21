@@ -29,11 +29,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
-        window = UIWindow(frame: UIScreen.main.bounds)
+        guard let windowScene = (scene as? UIWindowScene) else {
+            return
+        }
+
+        let window = UIWindow(windowScene: windowScene)
         let newsList: NewsListRouterProtocol = NewsListRouter()
         
-        window?.rootViewController = newsList.showModule()
-        window?.makeKeyAndVisible()
+        window.rootViewController = UINavigationController(rootViewController: newsList.showModule())
+        self.window = window
+        window.makeKeyAndVisible()
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
