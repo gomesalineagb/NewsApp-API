@@ -9,7 +9,7 @@ import UIKit
 
 public class NewsListViewController: UIViewController {
     
-    private var presenter: NewsListPresenterInputProtocol?
+    internal var presenter: NewsListPresenterInputProtocol?
     
     init(presenter: NewsListPresenterInputProtocol? = nil) {
         super.init(nibName: nil, bundle: nil)
@@ -32,6 +32,10 @@ extension NewsListViewController: NewsListPresenterOutputProtocol {
     }
     
     func setLoading(isLoading: Bool) {
-        
+        //adiciona um componente de carregando na tela ()
+    }
+    
+    func showError(with message: String?) {
+        //chama uma view com uma label e um botao de tentar novamente.
     }
 }

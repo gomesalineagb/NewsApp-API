@@ -11,4 +11,6 @@ struct NewsResponse: Decodable {
     var status: NewsStatusResponse
     var totalResults: Int
     var articles: [NewsResponseArticles]
+    var code: String?
+    var message: String?
 }

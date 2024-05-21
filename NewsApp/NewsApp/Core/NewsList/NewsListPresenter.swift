@@ -8,9 +8,11 @@
 import Foundation
 
 public class NewsListPresenter {
-    private var interactor: NewsListInteractorInputProtocol?
-    private var view: NewsListPresenterOutputProtocol?
-    private var router: NewsListRouterProtocol?
+    internal var interactor: NewsListInteractorInputProtocol?
+    weak internal var view: NewsListPresenterOutputProtocol?
+    internal var router: NewsListRouterProtocol?
+    
+    private var articles: [NewsArticleDTO] = []
     
     init(interactor: NewsListInteractorInputProtocol? = nil, 
          view: NewsListPresenterOutputProtocol? = nil,
@@ -24,7 +26,8 @@ public class NewsListPresenter {
 // MARK: - NewsListPresenterInputProtocol
 extension NewsListPresenter: NewsListPresenterInputProtocol {
     func viewDidLoad() {
-        
+        view?.setLoading(isLoading: true)
+        interactor?.fetchAllNews()
     }
     
     func didSelected(article: NewsArticleDTO) {
@@ -34,11 +37,12 @@ extension NewsListPresenter: NewsListPresenterInputProtocol {
 
 //MARK: - NewsListInteractorOutputProtocol
 extension NewsListPresenter: NewsListInteractorOutputProtocol {
-    func fetchDataSuccess(data: [NewsArticleDTO]) {
+    func fetchDataSuccess(data: [NewsArticleDTO]) {//imagem, autor, titulo e descricao respectivamente
+        articles = data
         
     }
     
-    func fetchDataFailure() {
-        
+    func fetchDataFailure(with message: String?) {
+        view?.showError(with: message)
     }
 }
