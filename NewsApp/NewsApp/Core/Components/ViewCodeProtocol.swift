@@ -20,4 +20,6 @@ extension ViewCodeProtocol {
         setupViewConstraints()
         setupViewAditionalConfiguration()
     }
+    
+    func setupViewAditionalConfiguration() {}
 }

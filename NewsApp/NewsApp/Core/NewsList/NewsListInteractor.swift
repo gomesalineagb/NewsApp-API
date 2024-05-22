@@ -55,24 +55,20 @@ extension NewsListInteractor: NewsListInteractorInputProtocol {
     
     func search(with text: String) {
         network?.search(with: text, completion: { [weak self] response, error in
-            if let response = response {
-//                if response.status == .ok {
-//                    if let articles = response.articles?.map({ $0.toDTO()}){
-//                        
-////                        self?.presenter?.fetchDataSuccess(data: articles)
-//                    }
-//                } else {
-//                    self?.presenter?.fetchDataFailure(with: response.message)
-//                }
+            if let response = response, let articles = response.articles {
+                if response.status == .ok {
+                    if let articles = self?.parseToDTO(articles: articles) {
+                        self?.presenter?.fetchDataSuccess(data: articles)
+                    }
+                    
+                } else {
+                    self?.presenter?.fetchDataFailure(with: response.message)
+                }
                 
             } else if let _ = error {
                 self?.presenter?.fetchDataFailure(with: nil)
             }
         })
-    }
-    
-    func didSelected(article: NewsArticleDTO) {
-        
     }
     
     func downloadImage(for url: String?, index: Int) {

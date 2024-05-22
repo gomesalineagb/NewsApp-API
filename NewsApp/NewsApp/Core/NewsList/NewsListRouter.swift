@@ -8,6 +8,7 @@
 import UIKit
 
 public class NewsListRouter {
+    private var viewController: UIViewController?
     
     private func setupModule() -> UIViewController {
         let network = NewsRequest()
@@ -22,6 +23,7 @@ public class NewsListRouter {
         presenter.view = viewController
         presenter.router = self
         viewController.presenter = presenter
+        self.viewController = viewController
         
         return viewController
     }
@@ -36,6 +38,7 @@ extension NewsListRouter: NewsListRouterProtocol {
     }
     
     func details(of article: NewsArticleDTO) {
-        
+        let router = NewsDetailsRouter()
+        viewController?.present(router.showModule(article: article), animated: true)
     }
 }

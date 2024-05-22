@@ -32,7 +32,7 @@ extension NewsListPresenter: NewsListPresenterInputProtocol {
     }
     
     func didSelected(index: Int) {
-        
+        router?.details(of: articles[index])
     }
     
     func downloadImage(for url: String?, index: Int) {
@@ -59,6 +59,7 @@ extension NewsListPresenter: NewsListInteractorOutputProtocol {
     }
     
     func updateImage(for index: Int, image: UIImage?) {
+        articles[index - 1].image = image
         view?.updateImage(for: index, image: image)
     }
 }

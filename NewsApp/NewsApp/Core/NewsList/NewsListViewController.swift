@@ -115,6 +115,8 @@ extension NewsListViewController: NewsListPresenterOutputProtocol {
         tableView.beginUpdates()
         tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
         tableView.endUpdates()
+
+        
     }
 }
 
@@ -123,19 +125,23 @@ extension NewsListViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         articles?.count ?? 0
     }
-}
-
-// MARK: - UITableViewDelegate
-extension NewsListViewController: UITableViewDelegate {
+    
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing:ArticleTableViewCell.self), for: indexPath) as? ArticleTableViewCell, let article = articles?[indexPath.item] else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ArticleTableViewCell.self), for: indexPath) as? ArticleTableViewCell, let article = articles?[indexPath.item] else {
             return UITableViewCell()
         }
         cell.setupCell(with: .init(image: article.image,
                                    author: article.author,
                                    title: article.title,
-                                   content: article.content))
-        
+                                   content: article.description))
+        cell.layoutIfNeeded()
         return cell
+    }
+}
+
+// MARK: - UITableViewDelegate
+extension NewsListViewController: UITableViewDelegate {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter?.didSelected(index: indexPath.row)
     }
 }

@@ -12,7 +12,6 @@ protocol NewsListInteractorInputProtocol: AnyObject {
     var network: NewsListRequestProtocol? { get set }
     func fetchAllNews()
     func search(with text: String)
-    func didSelected(article: NewsArticleDTO) //FIXME: verificar necessidade
     func downloadImage(for url: String?, index: Int)
 }
 
@@ -41,7 +40,7 @@ protocol NewsListPresenterOutputProtocol: AnyObject {
 
 protocol NewsListRouterProtocol: AnyObject {
     func showModule() -> UIViewController
-    func details(of article: NewsArticleDTO) // Imagem, data de publicacao e conteúdo respectivamente
+    func details(of article: NewsArticleDTO)
 }
 
 protocol NewsListRequestProtocol: AnyObject {
