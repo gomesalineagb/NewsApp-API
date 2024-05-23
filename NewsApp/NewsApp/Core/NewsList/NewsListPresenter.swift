@@ -32,11 +32,18 @@ extension NewsListPresenter: NewsListPresenterInputProtocol {
     }
     
     func didSelected(index: Int) {
-        router?.details(of: articles[index])
+        if !articles.isEmpty {
+            router?.details(of: articles[index])
+        }
     }
     
     func downloadImage(for url: String?, index: Int) {
         interactor?.downloadImage(for: url, index: index)
+    }
+    
+    func search(with text: String) {
+        view?.setLoading(isLoading: true)
+        interactor?.search(with: text)
     }
 }
 

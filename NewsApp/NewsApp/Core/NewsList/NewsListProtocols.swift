@@ -28,6 +28,7 @@ protocol NewsListPresenterInputProtocol: AnyObject {
     func viewDidLoad()
     func didSelected(index: Int)
     func downloadImage(for url: String?, index: Int)
+    func search(with text: String)
 }
 
 protocol NewsListPresenterOutputProtocol: AnyObject {

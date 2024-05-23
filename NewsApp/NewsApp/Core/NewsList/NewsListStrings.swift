@@ -8,6 +8,8 @@
 import Foundation
 
 struct NewsListStrings {
-    static let errorTitle = "Sorry"
-    static let errorDescription = "We're sorry, something went wrong. Try again later."
+    static let errorTitle = "Desculpe"
+    static let errorDescription = "Sentimos, algo de errado aconteceu."
+    static let searchPlaceholder = "Pesquisar"
+    static let emptyList = "Busca não encontrou resultados"
 }
