@@ -16,7 +16,6 @@ public class NewsListRouter {
         let presenter = NewsListPresenter()
         let viewController = NewsListViewController()
         
-        network.interactor = interactor
         interactor.presenter = presenter
         interactor.network = network
         presenter.interactor = interactor

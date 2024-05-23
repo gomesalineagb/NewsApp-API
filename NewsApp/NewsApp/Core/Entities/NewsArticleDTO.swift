@@ -16,3 +16,15 @@ struct NewsArticleDTO {
     var publishedAt: String
     var content: String
 }
+
+extension NewsArticleDTO: Equatable {
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        lhs.author == rhs.author &&
+        lhs.title == rhs.title &&
+        lhs.description == rhs.description &&
+        lhs.urlToImage == rhs.urlToImage &&
+        lhs.image == rhs.image &&
+        lhs.publishedAt == rhs.publishedAt &&
+        lhs.content == rhs.content
+    }
+}

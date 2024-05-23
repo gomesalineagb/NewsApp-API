@@ -32,6 +32,7 @@ class ArticleTableViewCell: UITableViewCell {
         super.prepareForReuse()
         image.image = nil
         author.text = nil
+        title.text = nil
         content.text = nil
     }
     

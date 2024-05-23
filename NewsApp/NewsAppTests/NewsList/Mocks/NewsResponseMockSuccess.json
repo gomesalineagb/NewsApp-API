@@ -1,0 +1,32 @@
+{
+    "status": "ok",
+    "totalResults": 2,
+    "articles": [
+        {
+            "source": {
+                "id": null,
+                "name": "Gizmodo.com"
+            },
+            "author": "Vinamrata Chaturvedi, Quartz",
+            "title": "Everything to Know About Bitcoin Pizza Day",
+            "description": "On May 22, 2010, a man in Florida paid 10,000 Bitcoin for pizza.Read more...",
+            "url": "https://gizmodo.com/bitcoin-pizza-day-date-origin-history-cryptocurrency-1851487831",
+            "urlToImage": "https://i.kinja-img.com/image/upload/c_fill,h_675,pg_1,q_80,w_1200/98aec6479bad523f5c89763f4acf0cf9.jpg",
+            "publishedAt": "2024-05-20T13:20:00Z",
+            "content": "On January 3, 2009, Bitcoins creator, Satoshi Nakamoto, mined the first block of the Bitcoin blockchain, known as the Genesis Block, which contained a reward of 50 Bitcoin. The technical foundations … [+1156 chars]"
+        },
+        {
+            "source": {
+                "id": "wired",
+                "name": "Wired"
+            },
+            "author": "Andy Greenberg",
+            "title": "A Vast New Dataset Could Supercharge the AI Hunt for Crypto Money Laundering",
+            "description": "Blockchain analysis firm Elliptic, MIT, and IBM, have released a new AI detection model—and the 200-million-transaction dataset it's trained on—that aims to spot the “shape” of Bitcoin money laundering.",
+            "url": "https://www.wired.com/story/ai-crypto-tracing-model-money-laundering/",
+            "urlToImage": "https://media.wired.com/photos/6631a1936dc0c77846852ed5/191:100/w_1280,c_limit/Crypto-Money-Laundering-Security-GettyImages-1543076825.jpg",
+            "publishedAt": "2024-05-01T13:00:00Z",
+            "content": "As a test of their resulting AI tool, the researchers checked its outputs with one cryptocurrency exchangewhich the paper doesn't nameidentifying 52 suspicious chains of transactions that had all ult… [+3279 chars]"
+        },
+    ]
+}

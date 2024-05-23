@@ -9,10 +9,10 @@ import UIKit
 
 public class NewsRequest {
     
-    var interactor: NewsListInteractorInputProtocol?
+    private var urlSession: URLSession
     
-    init(interactor: NewsListInteractorInputProtocol? = nil) {
-        self.interactor = interactor
+    init(urlSession: URLSession = URLSession.shared) {
+        self.urlSession = urlSession
     }
     
     private func getRequest(url: URL) -> URLRequest {
@@ -35,7 +35,7 @@ extension NewsRequest: NewsListRequestProtocol {
         if let url = url {
             
             let request = getRequest(url: url)
-            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            let task = urlSession.dataTask(with: request) { data, response, error in
                 if let data = data {
                     do {
                         let news = try JSONDecoder().decode(NewsResponse.self, from: data)
@@ -60,7 +60,7 @@ extension NewsRequest: NewsListRequestProtocol {
         if let url = url {
             
             let request = getRequest(url: url)
-            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            let task = urlSession.dataTask(with: request) { data, response, error in
                 
                 if let data = data {
                     do {
