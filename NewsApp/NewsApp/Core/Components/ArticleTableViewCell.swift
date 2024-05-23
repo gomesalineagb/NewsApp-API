@@ -28,6 +28,13 @@ class ArticleTableViewCell: UITableViewCell {
         selectionStyle = .none
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        image.image = nil
+        author.text = nil
+        content.text = nil
+    }
+    
     private func setupImageView() {
         image.layer.cornerRadius = 10
         contentView.layer.masksToBounds = true
@@ -74,6 +81,10 @@ class ArticleTableViewCell: UITableViewCell {
             content.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
         ])
         
+    }
+    
+    func setImage(image: UIImage?) {
+        self.image.image = image
     }
     
     func setupCell(with dto: DTO) {

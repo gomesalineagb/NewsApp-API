@@ -51,11 +51,9 @@ extension NewsListPresenter: NewsListPresenterInputProtocol {
 extension NewsListPresenter: NewsListInteractorOutputProtocol {
     func fetchDataSuccess(data: [NewsArticleDTO]) {
         articles = data
-        var index = 0
-        articles.forEach { article in
-            index += 1
-            interactor?.downloadImage(for: article.urlToImage, index: index)
-        }
+        articles.enumerated().forEach ({
+            interactor?.downloadImage(for: $0.element.urlToImage, index: $0.offset)
+        })
         view?.setDataSource(articles: data)
         view?.setLoading(isLoading: false)
     }
@@ -66,7 +64,7 @@ extension NewsListPresenter: NewsListInteractorOutputProtocol {
     }
     
     func updateImage(for index: Int, image: UIImage?) {
-        articles[index - 1].image = image
+        articles[index].image = image
         view?.updateImage(for: index, image: image)
     }
 }

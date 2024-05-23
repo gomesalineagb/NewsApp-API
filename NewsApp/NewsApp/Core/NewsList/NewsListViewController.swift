@@ -128,10 +128,9 @@ extension NewsListViewController: NewsListPresenterOutputProtocol {
     }
     
     func updateImage(for index: Int, image: UIImage?) {
-        articles[index - 1].image = image
-        tableView.beginUpdates()
-        tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
-        tableView.endUpdates()
+        articles[index].image = image
+        let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? ArticleTableViewCell
+        cell?.setImage(image: image)
     }
 }
 
@@ -154,7 +153,7 @@ extension NewsListViewController: UITableViewDataSource {
             cell.contentConfiguration = content
             return cell
         }
-        let article = articles[indexPath.item]
+        let article = articles[indexPath.row]
         cell.setupCell(with: .init(image: article.image,
                                    author: article.author,
                                    title: article.title,
