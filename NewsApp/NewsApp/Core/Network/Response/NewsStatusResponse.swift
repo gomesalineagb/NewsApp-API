@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum NewsStatusResponse: String, Decodable {
+enum NewsStatusResponse: String, Decodable, Equatable {
     case ok
     case error
 }

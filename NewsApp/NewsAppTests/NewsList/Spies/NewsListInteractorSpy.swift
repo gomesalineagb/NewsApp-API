@@ -36,7 +36,7 @@ class NewsListInteractorInputProtocolSpy: NewsListInteractorInputProtocol {
 class NewsListInteractorOutputSpy: NewsListInteractorOutputProtocol {
     
     enum Methods: Equatable {
-        case fetchDataSuccess
+        case fetchDataSuccess(data: [NewsArticleDTO])
         case fetchDataFailure(message: String?)
         case updateImage(index: Int, image: UIImage?)
     }
@@ -44,7 +44,7 @@ class NewsListInteractorOutputSpy: NewsListInteractorOutputProtocol {
     var calledMethods: [Methods] = []
     
     func fetchDataSuccess(data: [NewsArticleDTO]) {
-        calledMethods.append(.fetchDataSuccess)
+        calledMethods.append(.fetchDataSuccess(data: data))
     }
     
     func fetchDataFailure(with message: String?) {

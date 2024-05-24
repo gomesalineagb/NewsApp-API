@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct NewsResponseArticles: Decodable {
+struct NewsResponseArticles: Decodable, Equatable {
     var source: NewsResponseSource
     var author: String?
     var title: String?

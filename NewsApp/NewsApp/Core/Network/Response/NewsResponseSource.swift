@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct NewsResponseSource: Decodable {
+struct NewsResponseSource: Decodable, Equatable {
     var id: String?
     var name: String
 }
