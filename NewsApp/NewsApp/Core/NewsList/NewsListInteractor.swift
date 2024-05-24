@@ -38,17 +38,12 @@ extension NewsListInteractor: NewsListInteractorInputProtocol {
     func fetchAllNews() {
         network?.fetchAllNews(completion: { [weak self] response, error in
             if let response = response, let articles = response.articles {
-                if response.status == .ok {
-                    if let articles = self?.parseToDTO(articles: articles) {
-                        self?.presenter?.fetchDataSuccess(data: articles)
-                    }
-                    
-                } else {
-                    self?.presenter?.fetchDataFailure(with: response.message)
+                if let articles = self?.parseToDTO(articles: articles) {
+                    self?.presenter?.fetchDataSuccess(data: articles)
                 }
                 
-            } else if let _ = error {
-                self?.presenter?.fetchDataFailure(with: nil)
+            } else if response?.status == .error {
+                self?.presenter?.fetchDataFailure(with: response?.message)
             }
         })
     }

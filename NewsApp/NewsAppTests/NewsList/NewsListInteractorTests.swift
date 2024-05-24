@@ -24,29 +24,37 @@ final class NewsListInteractorTests: XCTestCase {
         network = nil
         presenterSpy = nil
         sut = nil
+        sut?.network = nil
     }
-//    
-//    func test_when_call_fetchNews_with_success_should_return_data() {
-//        sut?.fetchAllNews()
-//        
-//        
-//        network?.fetchAllNews(completion: { response, _ in
-//            
-//            XCTAssertEqual(response, .mock)
-//            XCTAssertEqual(self.presenterSpy?.calledMethods, [.fetchDataSuccess(data: .mockArray)])
-//        })
-//
-//    }
+
+    func test_when_call_fetchNews_with_success_should_return_data() {
+        sut?.fetchAllNews()
+                    
+        XCTAssertEqual(self.presenterSpy?.calledMethods, [.fetchDataSuccess(data: .mockArray)])
+    }
     
-//    func test_when_call_fetchNews_with_failure_should_return_error() {
-//        network = NewsRequest(urlSession: URLSessionErrorSpy())
-//        presenterSpy = NewsListInteractorOutputSpy()
-//        sut = .init(presenter: presenterSpy, network: network)
-//        
-//        sut?.fetchAllNews()
-//        
-//        XCTAssertEqual(presenterSpy?.calledMethods, [.fetchDataFailure(message: "Your API key is missing. Append this to the URL with the apiKey param, or use the x-api-key HTTP header.")])
-//    }
+    func test_when_call_fetchNews_with_failure_should_return_error() {
+        network = NewsRequest(urlSession: URLSessionErrorSpy())
+        presenterSpy = NewsListInteractorOutputSpy()
+        sut = .init(presenter: presenterSpy, network: network)
+        
+        sut?.fetchAllNews()
+        XCTAssertEqual(self.presenterSpy?.calledMethods, [.fetchDataFailure(message: "Your API key is missing. Append this to the URL with the apiKey param, or use the x-api-key HTTP header.")])
+    }
+    
+    func test_network_sucess_with_data() {
+        network?.fetchAllNews(completion: { response, _ in
+            
+            XCTAssertEqual(response, .mock)
+        })
+    }
+    
+    func test_network_failure() {
+        network = NewsRequest(urlSession: URLSessionErrorSpy())
+        network?.fetchAllNews(completion: { response, _ in
+            XCTAssertEqual(response, .error)
+        })
+    }
 }
 
 class URLSessionSuccessSpy: URLSession {
@@ -56,23 +64,29 @@ class URLSessionSuccessSpy: URLSession {
             let data = try? Data(contentsOf: url)
         else {
             XCTFail("Missing file: NewsResponseMockSuccess.json")
-            return URLSessionDataTask()
+            return URLSessionDataTaskSpy()
         }
         
         completionHandler(data, URLResponse(), nil)
-        return URLSessionDataTask()
+        return URLSessionDataTaskSpy()
     }
 }
 
 class URLSessionErrorSpy: URLSession {
     override func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, (any Error)?) -> Void) -> URLSessionDataTask {
-        guard let data = Bundle(for: type(of: self)).url(forResource: "NewsResponseMockError", withExtension: "json"),
-                let json = try? Data(contentsOf: data) else {
+        guard 
+            let data = Bundle(for: URLSessionErrorSpy.self).url(forResource: "newsResponseMockError.json", withExtension: nil),
+                let json = try? Data(contentsOf: data)
+        else {
             XCTFail("Missing file: NewsResponseMockError.json")
-            return URLSessionDataTask()
+            return URLSessionDataTaskSpy()
         }
         
-        completionHandler(json, nil, nil)
-        return URLSessionDataTask()
+        completionHandler(json, URLResponse(), nil)
+        return URLSessionDataTaskSpy()
     }
+}
+
+class URLSessionDataTaskSpy: URLSessionDataTask {
+    override func resume() {}
 }

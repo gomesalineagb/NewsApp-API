@@ -44,6 +44,7 @@
 		619EBF912C0034930073A34D /* newsResponseMockError.json in Resources */ = {isa = PBXBuildFile; fileRef = 619EBF842BFFEFC30073A34D /* newsResponseMockError.json */; };
 		619EBF922C0035310073A34D /* newsResponseMockSuccess.json in Resources */ = {isa = PBXBuildFile; fileRef = 619EBF832BFFEFA60073A34D /* newsResponseMockSuccess.json */; };
 		619EBF942C0039740073A34D /* NewsListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619EBF932C0039740073A34D /* NewsListPresenterTests.swift */; };
+		619EBF962C0043B20073A34D /* NewsListRouterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619EBF952C0043B10073A34D /* NewsListRouterSpy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,7 @@
 		619EBF8B2C0016190073A34D /* NetworkRequestSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestSpy.swift; sourceTree = "<group>"; };
 		619EBF8D2C0019990073A34D /* NewsResponseArticlesMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsResponseArticlesMock.swift; sourceTree = "<group>"; };
 		619EBF932C0039740073A34D /* NewsListPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListPresenterTests.swift; sourceTree = "<group>"; };
+		619EBF952C0043B10073A34D /* NewsListRouterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListRouterSpy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,6 +311,7 @@
 			children = (
 				619EBF802BFFE29D0073A34D /* NewsListInteractorSpy.swift */,
 				619EBF892BFFF7060073A34D /* NewsListPresenterSpy.swift */,
+				619EBF952C0043B10073A34D /* NewsListRouterSpy.swift */,
 			);
 			path = Spies;
 			sourceTree = "<group>";
@@ -486,6 +489,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				619EBF962C0043B20073A34D /* NewsListRouterSpy.swift in Sources */,
 				619EBF942C0039740073A34D /* NewsListPresenterTests.swift in Sources */,
 				619EBF812BFFE29D0073A34D /* NewsListInteractorSpy.swift in Sources */,
 				619EBF8A2BFFF7060073A34D /* NewsListPresenterSpy.swift in Sources */,

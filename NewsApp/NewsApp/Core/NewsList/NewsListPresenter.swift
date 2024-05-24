@@ -27,7 +27,6 @@ public class NewsListPresenter {
 extension NewsListPresenter: NewsListPresenterInputProtocol {
     func viewDidLoad() {
         view?.setLoading(isLoading: true)
-        view?.setDataSource(articles: [])
         interactor?.fetchAllNews()
     }
     
